@@ -7,6 +7,7 @@ import 'bookings_widgets/upcomingbookingcard.dart';
 import 'bookings_widgets/completedlessons.dart';
 import 'bookings_widgets/cancelledlessons.dart';
 
+
 class BookingsScreen extends StatefulWidget {
   const BookingsScreen({super.key});
 

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-// هنا هتعملي import لفايلات التيم كله (هنفترض أسماء الكلاسات)
-import 'Home/homescreen.dart'; // سكرين 4 (كنزي)
-import 'my_bookings_screen.dart'; // سكرين 11 (كنزي)
-import 'schedule_screen.dart'; // شاشة جدولي 
-import 'knowledge_hub_screen.dart'; // سكرين 15 (فريدة)
-import 'profile_screen.dart'; // سكرين 7 (حسابي)
+// 1. استيراد الشاشات 
+import 'Home/homescreen.dart'; // سكرين 4 (الرئيسية)
+import 'checkout/Booking/bookingsscreen.dart'; // سكرين 11 (حجوزاتي)
+import 'more/knowledge_center_screen.dart'; // سكرين 15 (مركز المعرفة)
+import 'profile/trainer/trainerscreen.dart';
 
 class MainNavigationWrapper extends StatefulWidget {
   const MainNavigationWrapper({super.key});
@@ -14,68 +13,80 @@ class MainNavigationWrapper extends StatefulWidget {
 }
 
 class _MainNavigationWrapperState extends State<MainNavigationWrapper> {
-  int _currentIndex = 0; 
+  int _currentIndex = 0;
 
   late final List<Widget> _screens;
 
   @override
   void initState() {
     super.initState();
+    
+    // 2. ربط الكلاسات
     _screens = [
-      const Homescreen(),         // 0. الرئيسية (سكرين 4)
-      const MyBookingsScreen(),   // 1. حجوزاتي (سكرين 11)
-      const Center(child: Text('جدولي')), // 2. جدولي (مؤقتاً لحد ما تخلص)
-      const KnowledgeHubScreen(), // 3. من نحن (سكرين 15)
-      const ProfileScreen(),      // 4. حسابي (سكرين 7)
+      const Homescreen(), // 0. الرئيسية
+      const BookingsScreen(), // 1. حجوزاتي
+      const Center(child: Text('جدولي', style: TextStyle(fontSize: 18))), // 2. جدولي
+      const KnowledgeCenterScreen(), // 3. من نحن (مربوطة بسكرين 15 هنا)
+      const TrainerScreen(), // 4. حسابي
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color(0xFF0047BA),
-        unselectedItemColor: Colors.grey,
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11),
-        unselectedLabelStyle: const TextStyle(fontSize: 11),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: 'الرئيسية',
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        body: IndexedStack(
+          index: _currentIndex,
+          children: _screens,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: const Color(0xFFFFFFFF),
+          selectedItemColor: const Color(0xFF0E216C),
+          unselectedItemColor: const Color(0xFF838C91),
+          selectedLabelStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 11,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month_outlined),
-            activeIcon: Icon(Icons.calendar_month),
-            label: 'حجوزاتي',
+          unselectedLabelStyle: const TextStyle(
+            fontSize: 11,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today_outlined),
-            activeIcon: Icon(Icons.calendar_today),
-            label: 'جدولي',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book_outlined),
-            activeIcon: Icon(Icons.menu_book),
-            label: 'من نحن',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
-            label: 'حسابي',
-          ),
-        ],
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              activeIcon: Icon(Icons.home),
+              label: 'الرئيسية',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month_outlined),
+              activeIcon: Icon(Icons.calendar_month),
+              label: 'حجوزاتي',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_today_outlined),
+              activeIcon: Icon(Icons.calendar_today),
+              label: 'جدولي',
+            ),
+            BottomNavigationBarItem(
+              // التعديل هنا: أيقونة دايرة جواها علامة التعجب/المعلومات
+              icon: Icon(Icons.info_outline),
+              activeIcon: Icon(Icons.info),
+              label: 'من نحن',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_outline),
+              activeIcon: Icon(Icons.person),
+              label: 'حسابي',
+            ),
+          ],
+        ),
       ),
     );
   }

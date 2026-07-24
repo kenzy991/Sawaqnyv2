@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../Trainer/trainerscreen.dart';
+import 'package:sawany/change_instructor/change_instructor_screen.dart';
+import 'package:sawany/profile/trainer/trainerscreen.dart' show TrainerScreen;
+import 'package:sawany/session_evaluation/session_evaluation_screen.dart';
 
 class UpcomingBookingCard extends StatelessWidget {
   final String trainerName;
@@ -167,13 +169,13 @@ class UpcomingBookingCard extends StatelessWidget {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const TrainerScreen(),
-                      ),
-                    );
-                  },
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const SessionEvaluationScreen(), // دي سكرين 12
+    ),
+  );
+},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF0E216C), // الكحلي الغامق الأساسي للأزرار الرئيسية
                     foregroundColor: Colors.white,
@@ -197,7 +199,14 @@ class UpcomingBookingCard extends StatelessWidget {
               // زر إعادة الجدولة - استخدام الأسلوب الثانوي المطابق للهوية
               Expanded(
                 child: OutlinedButton(
-                  onPressed: onReschedule ?? () {},
+                  onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const ChangeInstructorScreen(), // دي سكرين 14
+    ),
+  );
+},
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: Color(0xFF838C91)), // الرمادي المعتمد للحدود والأزرار الثانوية
                     shape: RoundedRectangleBorder(

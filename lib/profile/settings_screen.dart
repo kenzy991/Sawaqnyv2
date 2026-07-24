@@ -14,14 +14,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const Text(
-          'الإعدادات ⚙️',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
-        ),
-      ),
+appBar: AppBar(
+  backgroundColor: Colors.white,
+  elevation: 0,
+  // إضافة سهم الرجوع
+  leading: IconButton(
+    icon: const Icon(
+      Icons.arrow_back,
+      color: Color(0xFF0F172A), // متناسق مع لون العنوان
+    ),
+    onPressed: () => Navigator.pop(context), // بيرجع لسكرين 7
+  ),
+  title: const Text(
+    'الإعدادات ⚙️',
+    style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+  ),
+),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Column(

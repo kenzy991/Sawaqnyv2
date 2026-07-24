@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // السطر ده بيشيل علامة الـ Debug الحمرا من فوق
-      title: 'تطبيق الحجز',
+      title: 'sawany',
       theme: ThemeData(
         primaryColor: const Color(0xFF0047BA),
         scaffoldBackgroundColor: const Color(0xFFF8F9FB),

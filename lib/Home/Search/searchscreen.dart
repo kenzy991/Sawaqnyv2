@@ -5,7 +5,7 @@ import 'search_widgets/recentsearches.dart';
 import 'search_widgets/searchappbar.dart';
 import 'search_widgets/searchresultcard.dart';
 import 'search_widgets/searchsuggestions.dart';
-import '../../profile/trainer_widgets/trainerbottombar.dart';
+import 'package:sawany/profile/trainer/trainerscreen.dart';
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
@@ -115,20 +115,20 @@ class _SearchScreenState extends State<SearchScreen> {
                     const SizedBox(height: 8),
 
                     // 5. قائمة النتائج (تم إضافة الربط بشاشة الملف الشخصي هنا)
-                    ..._searchResults.map(
-                      (result) => SearchResultCard(
-                        data: result,
-                        onDetailsTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              // ينقل المستخدم لشاشة الملف الشخصي (سكرين 7) عند الضغط على التفاصيل
-                             builder: (context) => const TrainerBottomBar(), 
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+..._searchResults.map(
+  (result) => SearchResultCard(
+    data: result,
+    onDetailsTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          // التعديل هنا: غيرناها لـ TrainerScreen
+          builder: (context) => const TrainerScreen(), 
+        ),
+      );
+    },
+  ),
+),
                     const SizedBox(height: 20),
                   ],
                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'license_map_screen.dart';
 class KnowledgeCenterScreen extends StatefulWidget {
   const KnowledgeCenterScreen({super.key});
 
@@ -17,8 +17,15 @@ class _KnowledgeCenterScreenState extends State<KnowledgeCenterScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
+  backgroundColor: Colors.white,
+  elevation: 0,
+  // إضافة سهم الرجوع هنا
+  leading: IconButton(
+    icon: const Icon(Icons.arrow_back, color: Color(0xFF0F172A)),
+    onPressed: () {
+      Navigator.pop(context); // ده اللي هيرجعه لسكرين 4
+    },
+  ),
         title: Row(
           children: [
             Container(
@@ -147,46 +154,57 @@ class _KnowledgeCenterScreenState extends State<KnowledgeCenterScreen> {
             const SizedBox(height: 24),
 
             // Progress Section
-            _buildSectionHeader('متابعة التعلم', 'تقدمك الحالي'),
-            const SizedBox(height: 12),
-            Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-                side: BorderSide(color: Colors.grey.shade200),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text('وحدة إشارات المنع والإلزام', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: Colors.green.shade50,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text('65% مكتمل', style: TextStyle(color: Colors.green.shade700, fontSize: 12, fontWeight: FontWeight.bold)),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: const LinearProgressIndicator(
-                        value: 0.65,
-                        minHeight: 8,
-                        backgroundColor: Color(0xFFE2E8F0),
-                        color: Color(0xFF1D4ED8),
-                      ),
-                    ),
-                  ],
+_buildSectionHeader('متابعة التعلم', 'تقدمك الحالي'),
+const SizedBox(height: 12),
+InkWell(
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LicenseMapScreen(), // بتفتح سكرين 16
+      ),
+    );
+  },
+  borderRadius: BorderRadius.circular(20),
+  child: Card(
+    elevation: 0,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+      side: BorderSide(color: Colors.grey.shade200),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('خريطة استخراج الرخصة', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.green.shade50,
+                  borderRadius: BorderRadius.circular(8),
                 ),
+                child: Text('40% مكتمل', style: TextStyle(color: Colors.green.shade700, fontSize: 12, fontWeight: FontWeight.bold)),
               ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: const LinearProgressIndicator(
+              value: 0.40,
+              minHeight: 8,
+              backgroundColor: Color(0xFFE2E8F0),
+              color: Color(0xFF1D4ED8),
             ),
+          ),
+        ],
+      ),
+    ),
+  ),
+),
             const SizedBox(height: 24),
 
             // Categories / Sections

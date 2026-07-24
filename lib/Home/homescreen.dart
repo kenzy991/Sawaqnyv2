@@ -9,8 +9,14 @@ import 'home_widgets/searchbar.dart';
 import 'home_widgets/sectionheader.dart';
 import 'home_widgets/trainercard.dart';
 import 'home_widgets/schoolslist.dart';
-import 'Search/searchscreen.dart';
-import '../checkout/checkout_screen.dart'; 
+
+// استيراد الشاشات عشان التربيط
+import 'Search/searchscreen.dart'; // سكرين 5
+import '../checkout/checkout_screen.dart'; // سكرين 10
+import 'package:sawany/profile/settings_screen.dart'; // سكرين 17
+
+// التعديل: استيراد سكرين 15 (مركز المعرفة) - تأكدي من مسار الفايل عندك
+import '../more/knowledge_center_screen.dart'; 
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -28,7 +34,18 @@ class _HomescreenState extends State<Homescreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: const Color(0xFFFFFFFF), // الأبيض كخلفية رئيسية عامة للشاشة
-        appBar: const HomeAppBar(),
+        
+        // الأب بار مربوط بـ سكرين 17 (الإعدادات)
+        appBar: HomeAppBar(
+          onSettingsTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SettingsScreen(), // سكرين 17
+              ),
+            );
+          },
+        ),
         body: CustomScrollView(
           physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
@@ -40,7 +57,7 @@ class _HomescreenState extends State<Homescreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // 1. شريط البحث المربوط مع Navigation لشاشة البحث
+                    // 1. شريط البحث مربوط بـ سكرين 5 (السيرش)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: HomeSearchBar(
@@ -61,10 +78,20 @@ class _HomescreenState extends State<Homescreen> {
                     const FilterChipsList(),
                     const SizedBox(height: 16),
 
-                    // 3. البانر الإعلاني
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
-                      child: PromoBanner(),
+                    // 3. البانر الإعلاني (تم ربطه بـ سكرين 15 مركز المعرفة)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const KnowledgeCenterScreen(), // سكرين 15
+                            ),
+                          );
+                        },
+                        child: const PromoBanner(), // البانر أصبح قابل للضغط
+                      ),
                     ),
                     const SizedBox(height: 20),
 
@@ -75,7 +102,7 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                     const SizedBox(height: 24),
 
-                    // 5. قسم المدربين (مربوط الآن بشاشة الدفع)
+                    // 5. قسم المدربين (مربوط بـ سكرين 10 الدفع)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: SectionHeader(
@@ -91,7 +118,7 @@ class _HomescreenState extends State<Homescreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const CheckoutScreen(), // نقله لشاشة الدفع مباشرة
+                              builder: (context) => const CheckoutScreen(), 
                             ),
                           );
                         },
