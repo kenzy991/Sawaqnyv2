@@ -1,9 +1,20 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-// السطر ده عشان يقرا الشاشة اللي إنتي عملتيها جوه فولدر checkout
-import 'checkout/checkout_screen.dart'; 
-import 'main_navigation_wrapper.dart';
+// استدعاء شاشة البداية من فولدر auth
+import 'auth/splash_screen.dart'; 
+
 void main() {
   runApp(const MyApp());
+}
+
+// تعريف سلوك التمرير ليدعم اللمس والماوس والـ Trackpad
+class MyScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }
 
 class MyApp extends StatelessWidget {
@@ -12,20 +23,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // السطر ده بيشيل علامة الـ Debug الحمرا من فوق
+      debugShowCheckedModeBanner: false, // بيشيل علامة الـ Debug الحمرا
       title: 'sawany',
+      scrollBehavior: MyScrollBehavior(), // تفعيل التمرير المخصص هنا
       theme: ThemeData(
         primaryColor: const Color(0xFF0047BA),
         scaffoldBackgroundColor: const Color(0xFFF8F9FB),
       ),
-      // الجزء ده مهم جداً عشان يخلي اتجاه التطبيق كله عربي من اليمين للشمال
+      // بيخلي اتجاه التطبيق كله عربي من اليمين للشمال
       builder: (context, child) {
         return Directionality(
           textDirection: TextDirection.rtl,
           child: child!,
         );
       },
-      // هنا بنقوله أول شاشة تفتح هي شاشة الدفع بتاعتك
-home: const MainNavigationWrapper(),    );
+      // أول شاشة تفتح هي شاشة الـ Splash
+      home: const SplashScreen(),    
+    );
   }
 }

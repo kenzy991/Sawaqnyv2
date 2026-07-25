@@ -4,6 +4,7 @@ import 'Home/homescreen.dart'; // سكرين 4 (الرئيسية)
 import 'checkout/Booking/bookingsscreen.dart'; // سكرين 11 (حجوزاتي)
 import 'more/knowledge_center_screen.dart'; // سكرين 15 (مركز المعرفة)
 import 'profile/trainer/trainerscreen.dart';
+import 'auth/calender_screen.dart';
 
 class MainNavigationWrapper extends StatefulWidget {
   const MainNavigationWrapper({super.key});
@@ -21,13 +22,13 @@ class _MainNavigationWrapperState extends State<MainNavigationWrapper> {
   void initState() {
     super.initState();
     
-    // 2. ربط الكلاسات
+    // 3. ربط الكلاسات بالتبويبات
     _screens = [
-      const Homescreen(), // 0. الرئيسية
-      const BookingsScreen(), // 1. حجوزاتي
-      const Center(child: Text('جدولي', style: TextStyle(fontSize: 18))), // 2. جدولي
-      const KnowledgeCenterScreen(), // 3. من نحن (مربوطة بسكرين 15 هنا)
-      const TrainerScreen(), // 4. حسابي
+      const Homescreen(),             // 0. الرئيسية
+      const BookingsScreen(),         // 1. حجوزاتي
+      const CalenderScreen(),         // 2. جدولي (تم التعديل هنا)
+      const KnowledgeCenterScreen(),  // 3. من نحن
+      const TrainerScreen(),          // 4. حسابي
     ];
   }
 
@@ -75,7 +76,6 @@ class _MainNavigationWrapperState extends State<MainNavigationWrapper> {
               label: 'جدولي',
             ),
             BottomNavigationBarItem(
-              // التعديل هنا: أيقونة دايرة جواها علامة التعجب/المعلومات
               icon: Icon(Icons.info_outline),
               activeIcon: Icon(Icons.info),
               label: 'من نحن',
