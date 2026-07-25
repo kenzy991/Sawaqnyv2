@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'signup_screens.dart'; // تأكدي أن اسم الملف متوافق مع هيكل المشروع لديك
+import 'package:sawany/auth/identity_selection_screen.dart';
+import 'student_signup_screens.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -13,21 +14,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   int currentPage = 0;
 
+  // ألوان سوقني
+  static const Color primaryColor = Color(0xFF0E216C); // كحلي
+  static const Color accentColor = Color(0xFFFE8511); // برتقالي
+  static const Color greyColor = Color(0xFF838C91); // رمادي
+
   final List<Map<String, String>> pages = [
     {
-      "image": "lib/assets/loc.jpeg",
+      "image": "lib/assets/loc.png",
       "title": "ابحث عن أفضل مدرب قيادة",
       "description":
           "اعثر على أقرب مدرب أو مدرسة قيادة بسهولة وفي وقت قليل.",
     },
     {
-      "image": "lib/assets/pri.jpeg",
+      "image": "lib/assets/pri.png",
       "title": "قارن قبل الحجز",
       "description":
           "شاهد الأسعار والتقييمات لكل مدرب واختر الأنسب لك.",
     },
     {
-      "image": "lib/assets/reser.jpeg",
+      "image": "lib/assets/reser.png",
       "title": "حجز ودفع آمن",
       "description":
           "احجز بثقة وادفع بأمان مع إمكانية استبدال المدرب.",
@@ -42,6 +48,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: Column(
           children: [
             const SizedBox(height: 20),
+
+            /// Logo Text
             const Align(
               alignment: Alignment.topRight,
               child: Padding(
@@ -51,11 +59,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 58, 71, 183),
+                    color: primaryColor,
                   ),
                 ),
               ),
             ),
+
             Expanded(
               child: PageView.builder(
                 controller: controller,
@@ -71,31 +80,40 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Column(
                       children: [
                         const SizedBox(height: 30),
+
                         Expanded(
                           child: Image.asset(
                             pages[index]["image"]!,
                             fit: BoxFit.contain,
                           ),
                         ),
+
                         const SizedBox(height: 20),
+
+                        /// Title
                         Text(
                           pages[index]["title"]!,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
+                            color: Colors.black,
                           ),
                         ),
+
                         const SizedBox(height: 15),
+
+                        /// Description
                         Text(
                           pages[index]["description"]!,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 16,
-                            color: Colors.grey,
+                            color: greyColor,
                             height: 1.5,
                           ),
                         ),
+
                         const SizedBox(height: 30),
                       ],
                     ),
@@ -103,6 +121,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 },
               ),
             ),
+
+            /// Page Indicator
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
@@ -110,23 +130,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 (index) => AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   margin: const EdgeInsets.symmetric(horizontal: 4),
-                  width: currentPage == index ? 22 : 8,
+                  width: currentPage == index ? 24 : 8,
                   height: 8,
                   decoration: BoxDecoration(
                     color: currentPage == index
-                        ? const Color.fromARGB(255, 70, 3, 185)
-                        : Colors.grey.shade300,
+                        ? accentColor
+                        : greyColor.withOpacity(.25),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
             ),
+
             const SizedBox(height: 25),
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  /// Back Button
                   TextButton(
                     onPressed: currentPage == 0
                         ? null
@@ -140,15 +163,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       "رجوع",
                       style: TextStyle(
                         color: currentPage == 0
-                            ? Colors.grey.shade400
-                            : const Color.fromARGB(255, 68, 3, 182),
+                            ? greyColor.withOpacity(.5)
+                            : primaryColor,
                         fontSize: 18,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
+
+                  /// Next Button
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 91, 5, 241),
+                      backgroundColor: accentColor,
+                      elevation: 0,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 35,
                         vertical: 15,
@@ -164,11 +191,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           curve: Curves.easeInOut,
                         );
                       } else {
-                        // الانتقال إلى شاشة تسجيل الدخول / التسجيل
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AuthScreen(),
+                            builder: (context) => const IdentitySelectionScreen(),
                           ),
                         );
                       }
@@ -180,12 +206,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ],
               ),
             ),
+
             const SizedBox(height: 30),
           ],
         ),
