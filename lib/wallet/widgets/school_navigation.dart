@@ -21,7 +21,7 @@ class SchoolNavigation {
         break;
 
       case 1:
-        // المحفظة (تم نقلها للفهرس 1 بعد حذف "من نحن")
+        // المحفظة
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
