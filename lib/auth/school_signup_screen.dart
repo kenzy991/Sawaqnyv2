@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-// TODO: قم باستيراد شاشة التوجيه الرئيسية الخاصة بالمدرسة هنا
-// import 'school_main_navigation_wrapper.dart';
+// TODO: قم باستيراد شاشة تسجيل الكابتن/المدرب هنا
+import 'coach_registration_screen.dart';
 
 class SchoolAuthScreen extends StatefulWidget {
   const SchoolAuthScreen({super.key});
@@ -283,11 +283,11 @@ class _SchoolAuthScreenState extends State<SchoolAuthScreen> {
                   onPressed: () {
                     setState(() {
                       if (isLogin) {
-                        // الانتقال المباشر للوحة تحكم المدرسة
+                        // الانتقال مباشرة إلى شاشة تسجيل الكابتن/المدرب
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const SchoolMainNavigationWrapper(),
+                            builder: (context) => const CoachRegistrationScreen(),
                           ),
                         );
                       } else {

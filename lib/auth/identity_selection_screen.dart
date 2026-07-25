@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 
-// TODO: قم باستيراد ملفات الشاشات هنا
- import 'student_signup_screens.dart';
-
+// استيراد الملفات المطلوبة
+import 'student_signup_screens.dart';
 import 'school_signup_screen.dart';
+import 'coach_registration_screen.dart';
+import 'review_status_screen.dart'; 
 
 class IdentitySelectionScreen extends StatelessWidget {
   const IdentitySelectionScreen({Key? key}) : super(key: key);
 
-  // Brand Palette Constants
-  static const Color primaryNavy = Color(0xFF0E216C);
-  static const Color accentOrange = Color(0xFFFE8511);
-  static const Color neutralWhite = Color(0xFFFFFFFF);
-  static const Color neutralGray = Color(0xFF838C91);
-  static const Color neutralBlack = Color(0xFF000000);
+  // Brand Palette Constants (دليل ألوان منصة "سوقني")
+  static const Color primaryNavy = Color(0xFF0E216C);      // 60%: الكحلي الغامق للعناوين والخلفيات الرئيسية والحدود
+  static const Color accentOrange = Color(0xFFFE8511);     // 10%: البرتقالي المميز لأزرار الإجراءات (CTA)
+  static const Color neutralWhite = Color(0xFFFFFFFF);     // 30%: الأبيض لخلفية الواجهة والكروت
+  static const Color neutralGray = Color(0xFF838C91);      // 30%: الرمادي للنصوص الثانوية والحدود
+  static const Color neutralBlack = Color(0xFF000000);     // 30%: الأسود للعناوين الكبيرة والنصوص الرئيسية
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: neutralWhite,
+      backgroundColor: neutralWhite, // 30% الأبيض للخلفية الرئيسية
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
@@ -33,7 +34,7 @@ class IdentitySelectionScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  color: neutralBlack,
+                  color: neutralBlack, // 30% الأسود للنصوص الرئيسية
                 ),
               ),
 
@@ -52,15 +53,15 @@ class IdentitySelectionScreen extends StatelessWidget {
                             child: Container(
                               padding: const EdgeInsets.all(16.0),
                               decoration: BoxDecoration(
-                                color: neutralWhite,
+                                color: neutralWhite, // 30% الأبيض لخلفية الكروت
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
-                                  color: neutralGray.withOpacity(0.2),
-                                  width: 1,
+                                  color: neutralGray.withOpacity(0.3), // 30% الرمادي للحدود
+                                  width: 1.5,
                                 ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.03),
+                                    color: primaryNavy.withOpacity(0.05),
                                     blurRadius: 10,
                                     offset: const Offset(0, 4),
                                   ),
@@ -76,7 +77,7 @@ class IdentitySelectionScreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
-                                      color: neutralBlack,
+                                      color: primaryNavy, // 60% الكحلي لعنوان الكارت الرئيسي
                                     ),
                                   ),
                                   const SizedBox(height: 16),
@@ -85,13 +86,13 @@ class IdentitySelectionScreen extends StatelessWidget {
                                     width: 100,
                                     height: 100,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFEBF1FF), // Soft Navy Tint
+                                      color: primaryNavy.withOpacity(0.08), // تدرج خفيف من الكحلي الأساسي
                                       borderRadius: BorderRadius.circular(16),
                                     ),
                                     child: const Icon(
                                       Icons.apartment_rounded,
                                       size: 48,
-                                      color: primaryNavy,
+                                      color: primaryNavy, // 60% الكحلي الأساسي للأيقونة
                                     ),
                                   ),
                                   const SizedBox(height: 16),
@@ -102,7 +103,7 @@ class IdentitySelectionScreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 12,
                                       height: 1.4,
-                                      color: neutralGray,
+                                      color: neutralGray, // 30% الرمادي للنصوص الثانوية
                                     ),
                                   ),
                                 ],
@@ -110,32 +111,31 @@ class IdentitySelectionScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 16),
-                          // School Action Button (Outline Navy)
+                          // School Action Button (Outline Navy) - تم ربطه بـ SchoolSignupScreen بناءً على طلبك
                           SizedBox(
                             width: double.infinity,
                             height: 48,
                             child: OutlinedButton(
                               onPressed: () {
-                                // ⬇️ التوجيه لفورم المدرسة ⬇️
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const SchoolAuthScreen(), // غيّري اسم الكلاس هنا
+                                    builder: (context) => const SchoolAuthScreen(),
                                   ),
                                 );
                               },
                               style: OutlinedButton.styleFrom(
-                                side: const BorderSide(color: primaryNavy, width: 2),
+                                side: const BorderSide(color: primaryNavy, width: 2), // 60% الكحلي للحدود
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
                               child: const Text(
-                                'استمرار مدرسة',
+                                'إرسال طلب انضمام',
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
-                                  color: primaryNavy,
+                                  color: primaryNavy, // 60% الكحلي للنص
                                 ),
                               ),
                             ),
@@ -155,15 +155,15 @@ class IdentitySelectionScreen extends StatelessWidget {
                             child: Container(
                               padding: const EdgeInsets.all(16.0),
                               decoration: BoxDecoration(
-                                color: neutralWhite,
+                                color: neutralWhite, // 30% الأبيض لخلفية الكروت
                                 borderRadius: BorderRadius.circular(20),
                                 border: Border.all(
-                                  color: neutralGray.withOpacity(0.2),
-                                  width: 1,
+                                  color: neutralGray.withOpacity(0.3), // 30% الرمادي للحدود
+                                  width: 1.5,
                                 ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.03),
+                                    color: primaryNavy.withOpacity(0.05),
                                     blurRadius: 10,
                                     offset: const Offset(0, 4),
                                   ),
@@ -179,7 +179,7 @@ class IdentitySelectionScreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
-                                      color: neutralBlack,
+                                      color: accentOrange, // 10% البرتقالي المميز لعنوان الكارت
                                     ),
                                   ),
                                   const SizedBox(height: 16),
@@ -188,13 +188,13 @@ class IdentitySelectionScreen extends StatelessWidget {
                                     width: 100,
                                     height: 100,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFFFFF3E8), // Soft Orange Tint
+                                      color: accentOrange.withOpacity(0.1), // تدرج خفيف من البرتقالي الأساسي
                                       borderRadius: BorderRadius.circular(16),
                                     ),
                                     child: const Icon(
                                       Icons.school_rounded,
                                       size: 48,
-                                      color: accentOrange,
+                                      color: accentOrange, // 10% البرتقالي الأساسي للأيقونة
                                     ),
                                   ),
                                   const SizedBox(height: 16),
@@ -205,7 +205,7 @@ class IdentitySelectionScreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 12,
                                       height: 1.4,
-                                      color: neutralGray,
+                                      color: neutralGray, // 30% الرمادي للنصوص الثانوية
                                     ),
                                   ),
                                 ],
@@ -219,16 +219,15 @@ class IdentitySelectionScreen extends StatelessWidget {
                             height: 48,
                             child: ElevatedButton(
                               onPressed: () {
-                                // ⬇️ التوجيه لفورم الطالب ⬇️
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const AuthScreen(), // غيّري اسم الكلاس هنا
+                                    builder: (context) => const AuthScreen(),
                                   ),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: accentOrange,
+                                backgroundColor: accentOrange, // 10% البرتقالي المميز لزر الإجراءات الرئيسي (CTA)
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -239,7 +238,7 @@ class IdentitySelectionScreen extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
-                                  color: neutralWhite,
+                                  color: neutralWhite, // 30% الأبيض لنص الزر
                                 ),
                               ),
                             ),
@@ -258,17 +257,4 @@ class IdentitySelectionScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-// ⚠️ كلاسات مؤقتة لمنع ظهور خطأ أثناء التجميع (حذفيها عند إضافة شاشاتك الحقيقية)
-class StudentFormScreen extends StatelessWidget {
-  const StudentFormScreen({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('Student Form')));
-}
-
-class SchoolFormScreen extends StatelessWidget {
-  const SchoolFormScreen({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) => const Scaffold(body: Center(child: Text('School Form')));
 }

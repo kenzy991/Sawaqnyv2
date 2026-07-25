@@ -30,18 +30,37 @@ class PartnersStatsSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey.shade200),
+        color: const Color(0xFFFFFFFF), // أبيض لخلفية الكروت
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFF838C91)), // حدود رمادية
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(fontSize: 11, color: Colors.grey)),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 11,
+              color: Color(0xFF838C91), // رمادي للعناوين الفرعية
+            ),
+          ),
           const SizedBox(height: 4),
-          Text(number, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF0047BA))),
+          Text(
+            number,
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF0E216C), // كحلي أساسي للأرقام البارزة
+            ),
+          ),
           const SizedBox(height: 4),
-          Text(subtitle, style: const TextStyle(fontSize: 10, color: Colors.green)),
+          Text(
+            subtitle,
+            style: const TextStyle(
+              fontSize: 10,
+              color: Color(0xFF838C91), // رمادي للتفاصيل لتوحيد الألوان بدلاً من الأخضر
+            ),
+          ),
         ],
       ),
     );

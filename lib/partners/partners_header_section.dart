@@ -12,12 +12,19 @@ class PartnersHeaderSection extends StatelessWidget {
             children: [
               Text(
                 'شبكة مراكز وأكاديميات القيادة',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF000000), // أسود للعناوين الرئيسية
+                ),
               ),
               SizedBox(height: 4),
               Text(
                 'نثق بأفضل مدارس ومراكز تدريب القيادة المعتمدة في مصر',
-                style: TextStyle(color: Colors.grey, fontSize: 13),
+                style: TextStyle(
+                  color: Color(0xFF838C91), // رمادي للنصوص الثانوية
+                  fontSize: 13,
+                ),
                 textAlign: TextAlign.center,
               ),
             ],
@@ -26,16 +33,21 @@ class PartnersHeaderSection extends StatelessWidget {
         const SizedBox(height: 16),
         SizedBox(
           width: double.infinity,
-          height: 45,
+          height: 48,
           child: ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF0047BA),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              backgroundColor: const Color(0xFFFE8511), // برتقالي التفاعل الأساسي (CTA)
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              elevation: 0,
             ),
-            icon: const Icon(Icons.add_business_outlined, color: Colors.white, size: 18),
+            icon: const Icon(Icons.add_business_outlined, color: Color(0xFFFFFFFF), size: 18), // أبيض فوق البرتقالي
             label: const Text(
               'انضمام مدرسة / مركز تدريب',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Color(0xFFFFFFFF), // أبيض فوق البرتقالي
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
             ),
             onPressed: () {},
           ),

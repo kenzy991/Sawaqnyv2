@@ -10,73 +10,70 @@ class PartnersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FB),
+      backgroundColor: const Color(0xFFFFFFFF), // الأبيض للخلفية الرئيسية
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFF0E216C), // الكحلي الأساسي للهيدر
         elevation: 0,
         centerTitle: true,
         title: const Text(
           'شركائنا في التدريب',
-          style: TextStyle(color: Color(0xFF0047BA), fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Color(0xFFFFFFFF),
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 1. قسم الهيدر والزرار الرئيسي
             const PartnersHeaderSection(),
             const SizedBox(height: 24),
-
-            // 2. قسم الإحصائيات
             const PartnersStatsSection(),
             const SizedBox(height: 24),
-
-            // 3. قائمة الشركاء المعتمدين
             const Text(
               'مراكز وأكاديميات التدريب المعتمدة',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF000000), // أسود للعناوين الرئيسية
+              ),
             ),
             const SizedBox(height: 16),
-
             const PartnerCardItem(
               name: 'مدرسة الأهرام لتعليم القيادة',
               brief: 'توفير مضامير تدريب مغلقة وسيارات مجهزة بدواسات أمان مزدوجة للتدريب العملي.',
               badges: ['مضمار مجهز', 'سيارات مزدوجة التحكم'],
               expiry: 'عقد دائم',
-              fullDetails: 'تتيح هذه الشراكة لمتدربي التطبيق استخدام مضامير التدريب المغلقة والمعتمدة الخاصة بمدرسة الأهرام في الجيزة و6 أكتوبر، مما يوفر بيئة آمنة تماماً للمبتدئين للتدريب على الركنات والتحكم في السيارة قبل النزول للشوارع الرئيسية والزحام.',
+              fullDetails: 'تتيح هذه الشراكة لمتدربي التطبيق استخدام مضامير التدريب المغلقة والمعتمدة الخاصة بمدرسة الأهرام في الجيزة و6 أكتوبر.',
             ),
             const SizedBox(height: 16),
-
             const PartnerCardItem(
               name: 'أكاديمية مصر للقيادة الآمنة',
               brief: 'حصص تدريبية متطورة باستخدام أجهزة المحاكاة (Simulator) والقيادة الدفاعية.',
               badges: ['أجهزة محاكاة 3D', 'شهادات معتمدة'],
               expiry: 'حتى 2027',
-              fullDetails: 'اتفاقية حصرية يوفر بموجبها مركز المحاكاة بالأكاديمية حصصاً تدريبية باستخدام أجهزة Simulator ثلاثية الأبعاد لتعليم المتدربين كيفية التعامل مع الطقس السيئ، والزحام المروري الشديد، وتفادي الأخطار قبل بدء الجلسات العملية على الطريق.',
+              fullDetails: 'اتفاقية حصرية يوفر بموجبها مركز المحاكاة بالأكاديمية حصصاً تدريبية باستخدام أجهزة Simulator ثلاثية الأبعاد.',
             ),
             const SizedBox(height: 16),
-
             const PartnerCardItem(
               name: 'مركز أكتوبر لاختبارات القيادة',
               brief: 'إجراء اختبارات محاكاة لاختبار المرور الرسمي للتأكد من جاهزية المتدرب للرخصة.',
               badges: ['تأهيل لرخصة القيادة', 'تقييم شامل'],
               expiry: 'حتى 2026',
-              fullDetails: 'شراكة تتيح للمتدربين خوض تجربة اختبار قيادة مماثلة تماماً لاختبار إدارة المرور الرسمية. يتم تقييم المتدرب عبر مدربين خبراء وتحديد نقاط القوة والضعف بدقة لضمان اجتياز اختبار استخراج الرخصة من المرة الأولى.',
+              fullDetails: 'شراكة تتيح للمتدربين خوض تجربة اختبار قيادة مماثلة تماماً لاختبار إدارة المرور الرسمية.',
             ),
             const SizedBox(height: 16),
-
             const PartnerCardItem(
               name: 'المؤسسة المصرية للسلامة المرورية',
               brief: 'إعداد وتحديث المنهج النظري وشرح إشارات وقوانين المرور المصرية.',
               badges: ['منهج نظري معتمد', 'قوانين المرور'],
               expiry: 'حتى 2028',
-              fullDetails: 'شراكة تعليمية لإعداد كافة المواد العلمية والفيديوهات المتاحة داخل قسم التعلم بالتطبيق، وتحديثها باستمرار وفقاً لأحدث التعديلات في قانون المرور المصري والإشارات الرسمية وتكتيكات القيادة الآمنة.',
+              fullDetails: 'شراكة تعليمية لإعداد كافة المواد العلمية والفيديوهات المتاحة داخل قسم التعلم بالتطبيق.',
             ),
             const SizedBox(height: 24),
-
-            // 4. البانر الأزرق السفلي
             const PartnersBannerSection(),
             const SizedBox(height: 20),
           ],

@@ -4,20 +4,28 @@ import 'attendance_screen.dart'; // هنعمل امبورت للشاشة الت�
 class SessionStartScreen extends StatelessWidget {
   const SessionStartScreen({super.key});
 
+  // Brand Palette Constants (دليل ألوان منصة "سوقني")
+  static const Color primaryNavy = Color(0xFF0E216C);      // 60%: الكحلي الغامق للعناوين والعناصر الرئيسية
+  static const Color accentOrange = Color(0xFFFE8511);     // 10%: البرتقالي التفاعلي لأزرار الإجراءات (CTA) والنشاط
+  static const Color neutralWhite = Color(0xFFFFFFFF);     // 30%: الأبيض للكروت والخلفيات
+  static const Color neutralGray = Color(0xFF838C91);      // 30%: الرمادي للنصوص الثانوية والحدود
+  static const Color textBlack = Color(0xFF000000);        // الأسود للعناوين الرئيسية
+  static const Color backgroundLight = Color(0xFFF8F9FB);  // خلفية الشاشة الهادئة
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FB),
+      backgroundColor: backgroundLight,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: neutralWhite,
         elevation: 0,
         centerTitle: true,
         title: const Text(
           'تسجيل الدخول للجلسة',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: textBlack, fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: primaryNavy),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -27,7 +35,7 @@ class SessionStartScreen extends StatelessWidget {
             const SizedBox(height: 16),
             const Text(
               'جلسة تدريب عملي - الطالب: أحمد محمد',
-              style: TextStyle(fontSize: 16, color: Colors.black87, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 16, color: textBlack, fontWeight: FontWeight.w500),
             ),
             const SizedBox(height: 24),
 
@@ -36,9 +44,9 @@ class SessionStartScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: neutralWhite,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.blue.shade100, width: 2), // حدود زرقاء
+                  border: Border.all(color: neutralGray.withOpacity(0.3), width: 1.5), // حدود رمادية متناسقة
                 ),
                 child: Column(
                   children: [
@@ -50,22 +58,28 @@ class SessionStartScreen extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                             decoration: BoxDecoration(
-                              color: Colors.blue.shade50,
+                              color: primaryNavy.withOpacity(0.08), // خلفية كحلي شفافة خفيفة
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: const Row(
                               children: [
-                                Text('متطابق', style: TextStyle(color: Color(0xFF0047BA), fontWeight: FontWeight.bold)),
+                                Text(
+                                  'متطابق',
+                                  style: TextStyle(color: primaryNavy, fontWeight: FontWeight.bold),
+                                ),
                                 SizedBox(width: 4),
-                                Icon(Icons.check_circle, color: Color(0xFF0047BA), size: 16),
+                                Icon(Icons.check_circle, color: primaryNavy, size: 16),
                               ],
                             ),
                           ),
                           const Row(
                             children: [
-                              Text('التحقق من الموقع', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                              Text(
+                                'التحقق من الموقع',
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: textBlack),
+                              ),
                               SizedBox(width: 8),
-                              Icon(Icons.location_on_outlined, color: Color(0xFF0047BA)),
+                              Icon(Icons.location_on_outlined, color: primaryNavy),
                             ],
                           ),
                         ],
@@ -76,7 +90,7 @@ class SessionStartScreen extends StatelessWidget {
                       child: Text(
                         'تم التحقق من موقعك الحالي وتطابقه مع موقع بدء الجلسة المجدول.',
                         textAlign: TextAlign.right,
-                        style: TextStyle(color: Colors.grey, fontSize: 13),
+                        style: TextStyle(color: neutralGray, fontSize: 13),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -86,9 +100,9 @@ class SessionStartScreen extends StatelessWidget {
                       child: Container(
                         height: 120,
                         width: double.infinity,
-                        color: Colors.grey.shade200,
+                        color: backgroundLight,
                         child: const Center(
-                          child: Icon(Icons.map, size: 50, color: Colors.grey),
+                          child: Icon(Icons.map, size: 50, color: neutralGray),
                         ),
                       ),
                     ),
@@ -99,7 +113,7 @@ class SessionStartScreen extends StatelessWidget {
 
             const SizedBox(height: 50),
 
-            // زرار بدء الجلسة الدائري
+            // زرار بدء الجلسة الدائري (تم تحويله للبرتقالي التفاعلي CTA)
             GestureDetector(
               onTap: () {
                 // بينقلنا لشاشة الحضور والانصراف
@@ -113,23 +127,23 @@ class SessionStartScreen extends StatelessWidget {
                 height: 180,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color(0xFF0047BA),
+                  color: accentOrange, // البرتقالي المميز لإجراءات الـ CTA الرئيسية
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.blue.withOpacity(0.3),
-                      spreadRadius: 10,
-                      blurRadius: 20,
+                      color: accentOrange.withOpacity(0.35),
+                      spreadRadius: 8,
+                      blurRadius: 18,
                     ),
                   ],
                 ),
                 child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.play_circle_fill, color: Colors.white, size: 60),
+                    Icon(Icons.play_circle_fill, color: neutralWhite, size: 60),
                     SizedBox(height: 8),
                     Text(
                       'بدء الجلسة',
-                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: neutralWhite, fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -139,7 +153,7 @@ class SessionStartScreen extends StatelessWidget {
             const SizedBox(height: 50),
             const Text(
               'يرجى التأكد من استعداد الطالب قبل بدء المؤقت.',
-              style: TextStyle(color: Colors.grey, fontSize: 13),
+              style: TextStyle(color: neutralGray, fontSize: 13),
             ),
           ],
         ),
